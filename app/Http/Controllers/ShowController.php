@@ -22,12 +22,22 @@ class ShowController extends Controller
         return view('home', compact('fines', 'team'));
     }
 
-    public function boetes()
+    public function index_boetes()
     {
         $fines = Fine::where('user_id', Auth::user()->id)->get();
         $teams = Team::all();
 
         return view('boetes.index', compact('fines', 'teams'));
+    }
+
+    public function show_boetes($id)
+    {
+        $id = Fine::where('id', Fine::class()->id)->get();
+
+        $fines = Fine::where('user_id', Auth::user()->id)->get();
+        $teams = Team::all();
+
+        return view('boetes.show', compact('fines', 'teams'));
     }
 
     public function teams()

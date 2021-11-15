@@ -37,5 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::get('/mijn-boetes', [ShowController::class, 'boetes'] )->name('boetes.index');
+    Route::get('/mijn-boetes', [ShowController::class, 'index_boetes'] )->name('boetes.index');
+    Route::get('/mijn-boetes/boete-1/', [ShowController::class, 'show_boetes'] )->name('boetes.show');
 });
