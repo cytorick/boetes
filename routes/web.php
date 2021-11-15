@@ -32,11 +32,13 @@ Route::get('/home', [ShowController::class, 'dashboard'])->name('home');
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about')->middleware('auth');
 
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
-
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/mijn-boetes', [ShowController::class, 'index_boetes'] )->name('boetes.index');
     Route::get('/mijn-boetes/boete-1/', [ShowController::class, 'show_boetes'] )->name('boetes.show');
+
+    Route::get('/mijn-teams/', [ShowController::class, 'index_teams'] )->name('teams.index');
+
+    Route::get('/instellingen/', [ShowController::class, 'index_settings'] )->name('settings.index');
 });

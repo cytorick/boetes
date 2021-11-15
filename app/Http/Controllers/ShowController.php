@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Fine;
 use App\Models\Team;
@@ -17,17 +18,19 @@ class ShowController extends Controller
     public function dashboard()
     {
         $fines = Fine::where('user_id', Auth::user()->id)->take(5)->get();
+        $user = User::where('id', Auth::user()->id)->get();
         $team = Team::all();
 
-        return view('home', compact('fines', 'team'));
+        return view('home', compact('fines', 'team', 'user'));
     }
 
     public function index_boetes()
     {
         $fines = Fine::where('user_id', Auth::user()->id)->get();
+        $user = User::where('id', Auth::user()->id)->get();
         $teams = Team::all();
 
-        return view('boetes.index', compact('fines', 'teams'));
+        return view('boetes.index', compact('fines', 'teams', 'user'));
     }
 
     public function show_boetes($id)
@@ -40,8 +43,13 @@ class ShowController extends Controller
         return view('boetes.show', compact('fines', 'teams'));
     }
 
-    public function teams()
+    public function index_teams()
     {
         return view('teams.index');
+    }
+
+    public function index_settings()
+    {
+        return view('settings.index');
     }
 }

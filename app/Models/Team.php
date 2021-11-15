@@ -13,4 +13,9 @@ class Team extends Model
     {
         return $this->hasMany(Member::class);
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'foreign_key');
+    }
 }
